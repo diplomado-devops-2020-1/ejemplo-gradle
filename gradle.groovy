@@ -14,7 +14,7 @@ def call(){
                     stage('sonar')
                     {
                     	def scannerHome = tool 'sonar-scanner';
-    					withSonarQubeEnv('sonar') { 
+    					withSonarQubeEnv('Sonar') { 
       					
                          bat "${scannerHome}\\bin\\sonar-scanner -Dsonar.projectKey=ejemplo-gradle -Dsonar.java.binaries=build"
 
