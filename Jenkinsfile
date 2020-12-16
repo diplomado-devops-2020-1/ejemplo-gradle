@@ -1,27 +1,19 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('Pipeline') {
-            steps {
-                script{
-					stage('build y test'){
-					
-					}
-					stage('Sonar'){
-					
-					}
-					stage('Run'){
-					
-					}
-					stage('Rest'){
-					
-					}
-					stage('Nexus'){
-					
-					}
-				}
-            }
+pipeline{
+agent any
+  parameters { choice(name: 'buildtool', choices: ['gradle','maven'], description: 'Elección de herramienta de construcción para aplicación covid')}
+  
+  stages{
+    stage('Hello')
+    {
+      steps
+      {
+        script
+        {
+          println 'Herramienta de ejecución seleccionada: ' + params.buildtool
+          def pipe = load "${params.buildtool}.groovy"
+          pipe.call()
         }
+      }
     }
+  }
 }
