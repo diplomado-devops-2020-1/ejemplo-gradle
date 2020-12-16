@@ -22,7 +22,7 @@ def call(){
                     }
                     stage('run')
                     {
-                        bat "nohup start gradlew bootRun & >dev/null"
+                        bat "nohup start gradlew bootRun &"
                         sleep 20
 
                     }
