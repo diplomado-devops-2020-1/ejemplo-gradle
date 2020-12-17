@@ -16,4 +16,15 @@ agent any
       }
     }
   }
+  post{
+	failure{
+    slackSend channel: 'U01D689C92A', color: 'good', message: 'Ejecución exitosa', teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'f7b6dd93-5a8e-4493-9428-37004efbe394'
+	
+	}
+	success{
+    slackSend channel: 'U01D689C92A', color: 'good', message: 'Ejecución exitosa', teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'f7b6dd93-5a8e-4493-9428-37004efbe394'
+	
+	}
+  
+  }
 }
