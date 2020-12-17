@@ -9,6 +9,8 @@ agent any
       {
         script
         {
+	  env.STAGE_NAME = ''
+		
           println 'Herramienta de ejecución seleccionada: ' + params.buildtool
           def pipe = load "${params.buildtool}.groovy"
           pipe.call()
