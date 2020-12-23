@@ -1,29 +1,3 @@
-pipeline{
-agent any
-  parameters { choice(name: 'buildtool', choices: ['gradle','maven'], description: 'Elección de herramienta de construcción para aplicación covid')}
-  
-  stages{
-    stage('Hello')
-    {
-      steps
-      {
-        script
-        {
-	  env.TAREA = 'INIT';	
-          println 'Herramienta de ejecución seleccionada: ' + params.buildtool
-          def pipe = load "${params.buildtool}.groovy"
-          pipe.call()
-        }
-      }
-    }
-  }
-  post{
-	failure{
-slackSend channel: 'U01D689C92A', color: 'danger', message: 'Miguel Vera Miranda ' + params.buildtool + ' Ejecucion fallida en stage '+env.TAREA , teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'f7b6dd93-5a8e-4493-9428-37004efbe394'
-	}
-	success{
-slackSend channel: 'U01D689C92A', color: 'good', message: 'Miguel Vera Miranda ' + params.buildtool + ' Ejecucion exitosa', teamDomain: 'dipdevopsusach2020', tokenCredentialId: 'f7b6dd93-5a8e-4493-9428-37004efbe394'
-	}
-  
-  }
-}
+library (‘pipeline’)
+
+ejecucion.call()
